@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Vinkla\Hashids\Facades\Hashids;
 
 class ApiController extends \Illuminate\Routing\Controller
 {
@@ -178,9 +177,8 @@ class ApiController extends \Illuminate\Routing\Controller
 		// if we map route /user/{user}/comments/{comment} to a controller, Laravel will pass `user`
 		// as first argument and `comment` as last argument. So, id object that we want to fetch
 		// is the last argument.
-		$xid = last(func_get_args());
-		$convertedId = Hashids::decode($xid);
-		$id = $convertedId[0];
+		
+		$id = last(func_get_args());
 
 		$this->validate();
 
@@ -230,10 +228,7 @@ class ApiController extends \Illuminate\Routing\Controller
 	{
 		\DB::beginTransaction();
 
-		// Geting id from hashids
-		$xid = last(func_get_args());
-		$convertedId = Hashids::decode($xid);
-		$id = $convertedId[0];
+		$id = $xid;
 
 		$this->validate();
 
@@ -271,10 +266,8 @@ class ApiController extends \Illuminate\Routing\Controller
 	{
 		\DB::beginTransaction();
 
-		// Geting id from hashids
-		$xid = last(func_get_args());
-		$convertedId = Hashids::decode($xid);
-		$id = $convertedId[0];
+		
+		$id = last(func_get_args());
 
 		$this->validate();
 
@@ -875,9 +868,7 @@ class ApiController extends \Illuminate\Routing\Controller
 
 	protected function getIdFromParams($params)
 	{
-		$xid = last(func_get_args());
-		$convertedId = Hashids::decode($xid);
-		$id = $convertedId[0];
+		$id = last(func_get_args());
 
 		return $id;
 	}

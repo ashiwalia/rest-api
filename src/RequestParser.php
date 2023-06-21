@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Str;
-use Vinkla\Hashids\Facades\Hashids;
 
 class RequestParser
 {
@@ -257,7 +256,7 @@ class RequestParser
 
 				if (count($hashableArray) > 0) {
 					foreach ($hashableArray as $hashCode) {
-						$convertedId = Hashids::decode($hashCode);
+						$convertedId = $hashCode;
 						$hsahToId = $convertedId[0];
 
 						$filters = str_replace($hashCode, $hsahToId, $filters);
