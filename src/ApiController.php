@@ -228,7 +228,7 @@ class ApiController extends \Illuminate\Routing\Controller
 	{
 		\DB::beginTransaction();
 
-		$id = $xid;
+		$id = last(func_get_args());
 
 		$this->validate();
 
