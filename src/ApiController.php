@@ -221,7 +221,7 @@ class ApiController extends \Illuminate\Routing\Controller
 			call_user_func([$this, 'stored'], $object);
 		}
 
-		return ApiResponse::make("Resource created successfully", ["xid" => $object->xid], $meta);
+		return ApiResponse::make("Resource created successfully", ["xid" => $object->id], $meta);
 	}
 
 	public function update(...$args)
@@ -259,7 +259,7 @@ class ApiController extends \Illuminate\Routing\Controller
 			call_user_func([$this, 'updated'], $object);
 		}
 
-		return ApiResponse::make("Resource updated successfully", ["xid" => $object->xid], $meta);
+		return ApiResponse::make("Resource updated successfully", ["xid" => $object->id], $meta);
 	}
 
 	public function destroy(...$args)
